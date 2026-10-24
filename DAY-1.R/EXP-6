@@ -1,0 +1,22 @@
+
+# Age data
+v <- c(23,23,27,27,39,41,47,49,50,52,54,54,
+       56,57,58,58,60,61)
+
+# Value to normalize
+x <- 35
+
+# (i) Min-Max Normalization (range 0 to 1)
+min_max <- (x - min(v)) / (max(v) - min(v))
+cat("Min-Max Normalization:", min_max, "\n")
+
+# (ii) Z-score Normalization
+m <- mean(v)
+s <- 12.94
+z_score <- (x - m) / s
+cat("Z-score Normalization:", z_score, "\n")
+
+# (iii) Decimal Scaling Normalization
+j <- ceiling(log10(max(abs(x), 1)))
+decimal_scaling <- x / (10^j)
+cat("Decimal Scaling Normalization:", decimal_scaling, "\n")
