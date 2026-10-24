@@ -1,0 +1,29 @@
+
+# Marks scored by students
+marks <- c(55, 60, 71, 63, 55, 65, 50, 55, 58,
+           59, 61, 63, 65, 67, 71, 72, 75)
+
+num_bins <- 3
+
+# (a) Equal-frequency partitioning
+sorted_marks <- sort(marks)
+bins_eq_frequency <- split(sorted_marks,
+                           rep(1:num_bins,
+                               each = ceiling(length(marks)/num_bins),
+                               length.out = length(marks)))
+print("Equal-Frequency Bins:")
+print(bins_eq_frequency)
+
+hist(marks, breaks = quantile(marks, probs = seq(0, 1, length.out = 4)),
+     main = "Equal-Frequency Partitioning",
+     xlab = "Marks", col = "lightblue")
+
+# (b) Equal-width partitioning
+breaks <- seq(min(marks), max(marks), length.out = num_bins + 1)
+bins_eq_width <- cut(marks, breaks = breaks, include.lowest = TRUE)
+print("Equal-Width Bins:")
+print(split(marks, bins_eq_width))
+
+hist(marks, breaks = breaks, include.lowest = TRUE,
+     main = "Equal-Width Partitioning",
+     xlab = "Marks", col = "lightgreen")
