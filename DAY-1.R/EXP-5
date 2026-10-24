@@ -1,0 +1,32 @@
+
+# Given data
+age <- c(23,23,27,27,39,41,47,49,50,52,54,54,
+         56,57,58,58,60,61)
+
+fat <- c(9.5,26.5,7.8,17.8,31.4,25.9,27.4,27.2,
+         31.2,34.6,42.5,28.8,33.4,30.2,34.1,32.9,
+         41.2,35.7)
+
+# (a) Mean, Median and Standard Deviation
+cat("Age Mean:", mean(age), "\n")
+cat("Age Median:", median(age), "\n")
+cat("Age SD:", sd(age), "\n")
+
+cat("Fat Mean:", mean(fat), "\n")
+cat("Fat Median:", median(fat), "\n")
+cat("Fat SD:", sd(fat), "\n")
+
+# (b) Boxplots
+par(mfrow = c(1, 2))
+boxplot(age, main = "Boxplot of Age", ylab = "Age")
+boxplot(fat, main = "Boxplot of Body Fat", ylab = "% Fat")
+
+# (c) Scatter plot
+plot(age, fat, main = "Age vs Body Fat",
+     xlab = "Age", ylab = "Body Fat (%)",
+     pch = 19, col = "blue")
+
+# Q-Q plot comparing age and body fat
+qqplot(age, fat, main = "Q-Q Plot: Age vs Body Fat",
+       xlab = "Age", ylab = "Body Fat (%)")
+abline(0, 1, col = "red")
