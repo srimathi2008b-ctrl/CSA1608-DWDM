@@ -1,0 +1,55 @@
+# Load Library
+library(mclust)
+
+# Create Customer Dataset
+customer <- data.frame(
+  Orders = c(2, 3, 4, 8, 9, 10, 12, 3, 11, 2),
+  OrderValue = c(150, 200, 250, 600, 700, 800, 900, 180, 850, 120),
+  Restaurants = c(1, 2, 2, 5, 6, 7, 8, 1, 7, 1)
+)
+
+print(customer)
+
+# Normalize Data
+data_scaled <- scale(customer)
+
+# HIERARCHICAL CLUSTERING
+d <- dist(data_scaled)
+hc <- hclust(d, method = "ward.D2")
+
+# Draw Dendrogram
+plot(hc, main = "Hierarchical Clustering",
+     xlab = "Customers", ylab = "Distance")
+
+# Create 2 Clusters
+h_cluster <- cutree(hc, k = 2)
+
+cat("Hierarchical Clustering:\n")
+print(h_cluster)
+
+# EM CLUSTERING
+em <- Mclust(data_scaled, G = 2)
+
+cat("EM Clustering:\n")
+print(em$classification)
+
+# Compare Results
+cat("Hierarchical Cluster Sizes:\n")
+print(table(h_cluster))
+
+cat("EM Cluster Sizes:\n")
+print(table(em$classification))
+
+# Display Cluster Groups
+customer$Hierarchical <- h_cluster
+customer$EM <- em$classification
+
+print(customer)
+
+# Plot EM Clusters
+plot(data_scaled[,1], data_scaled[,2],
+     col = em$classification,
+     pch = 19,
+     main = "EM Clustering",
+     xlab = "Orders (Scaled)",
+     ylab = "Order Value (Scaled)")
