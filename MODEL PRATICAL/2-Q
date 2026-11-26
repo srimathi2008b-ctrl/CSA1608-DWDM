@@ -1,0 +1,35 @@
+# Load Dataset
+data <- read.csv("diabetes.csv")
+
+# Display first 5 rows
+head(data)
+
+# Create Age Groups
+data$AgeGroup <- cut(data$Age,
+                     breaks = c(20, 30, 40, 50, 60, 100),
+                     labels = c("20-30", "31-40",
+                                "41-50", "51-60", "Above 60"),
+                     include.lowest = TRUE)
+
+# Calculate Average BMI
+avg_bmi <- aggregate(BMI ~ AgeGroup,
+                     data = data,
+                     FUN = mean)
+
+print(avg_bmi)
+
+# Scatter Plot: BMI vs Age
+plot(data$Age, data$BMI,
+     main = "BMI vs Age",
+     xlab = "Age",
+     ylab = "BMI",
+     col = "blue",
+     pch = 19)
+
+# Bar Chart: Average BMI
+barplot(avg_bmi$BMI,
+        names.arg = avg_bmi$AgeGroup,
+        main = "Average BMI by Age Group",
+        xlab = "Age Group",
+        ylab = "Average BMI",
+        col = "lightgreen")
