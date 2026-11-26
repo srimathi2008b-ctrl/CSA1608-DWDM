@@ -1,0 +1,20 @@
+# Load the built-in dataset
+data(mtcars)
+
+# Display the dataset
+print(mtcars)
+
+# Convert cylinders into a factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+# Draw boxplot
+boxplot(mpg ~ cyl,
+        data = mtcars,
+        main = "MPG vs Number of Cylinders",
+        xlab = "Number of Cylinders",
+        ylab = "Miles Per Gallon (MPG)",
+        col = c("lightblue", "lightgreen", "lightpink"))
+
+# Display summary
+cat("Summary of MPG:\n")
+print(summary(mtcars$mpg))
