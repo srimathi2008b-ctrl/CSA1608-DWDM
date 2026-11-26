@@ -1,0 +1,35 @@
+# Load Library
+library(arules)
+
+# Create Transaction Dataset
+data <- list(
+  c("Milk", "Bread", "Butter"),
+  c("Bread", "Butter"),
+  c("Milk", "Bread"),
+  c("Milk", "Butter"),
+  c("Milk", "Bread", "Butter"),
+  c("Bread", "Butter")
+)
+
+# Convert into Transactions
+trans <- as(data, "transactions")
+
+# Display Transactions
+inspect(trans)
+
+# APRIORI ALGORITHM
+rules <- apriori(trans,
+                 parameter = list(supp = 0.5,
+                                  conf = 0.5,
+                                  minlen = 2))
+
+cat("APRIORI RULES:\n")
+inspect(rules)
+
+# FP-GROWTH ALGORITHM
+itemsets <- eclat(trans,
+                  parameter = list(supp = 0.5,
+                                   minlen = 1))
+
+cat("FREQUENT ITEMSETS:\n")
+inspect(itemsets)
