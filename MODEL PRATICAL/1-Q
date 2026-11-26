@@ -1,0 +1,32 @@
+# Enter the data
+weight <- c(55,62,68,70,72,75,78,80,82,85)
+bmi <- c(19.8,21.5,23.1,24,25.2,26,27.1,28,28.5,29.2)
+
+# Mean
+cat("Weight Mean:", mean(weight), "\n")
+cat("BMI Mean:", mean(bmi), "\n")
+
+# Median
+cat("Weight Median:", median(weight), "\n")
+cat("BMI Median:", median(bmi), "\n")
+
+# Standard Deviation
+cat("Weight SD:", sd(weight), "\n")
+cat("BMI SD:", sd(bmi), "\n")
+
+# Boxplots
+boxplot(weight, main="Weight Boxplot", col="lightblue")
+boxplot(bmi, main="BMI Boxplot", col="lightgreen")
+
+# Scatter Plot
+plot(weight, bmi, main="Weight vs BMI",
+     xlab="Weight", ylab="BMI",
+     col="blue", pch=19)
+
+# Q-Q Plot for Weight
+qqnorm(weight, main="Weight Q-Q Plot")
+qqline(weight, col="red")
+
+# Q-Q Plot for BMI
+qqnorm(bmi, main="BMI Q-Q Plot")
+qqline(bmi, col="red")
